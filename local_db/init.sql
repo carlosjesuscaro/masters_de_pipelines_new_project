@@ -20,6 +20,7 @@ CREATE TABLE Companies (
     description TEXT
 );
 
+-- Table for the user's job applications
 CREATE TABLE JobApplications (
     application_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
