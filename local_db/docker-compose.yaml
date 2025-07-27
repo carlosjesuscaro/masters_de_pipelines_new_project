@@ -1,0 +1,23 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0 # Using MySQL 8.0, a recent stable version
+    container_name: job_tracker_mysql # A friendly name for your container
+    environment:
+      # These variables will be loaded from your .env file
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306" # Maps container's 3306 to your host's 3306
+    volumes:
+      - mysql_data:/var/lib/mysql # Persistent storage for your database data
+      # Mounts your init.sql to be executed on container startup
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped # Always restart the container if it stops unexpectedly
+
+volumes:
+  mysql_data: # Define the named volume for data persistence
