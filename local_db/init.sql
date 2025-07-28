@@ -8,7 +8,7 @@ CREATE TABLE Users (
     country VARCHAR(50),
     registration_date DATE,
     birth_date DATE,
-    nationality VARCHAR(50)
+    nationality VARCHAR(100)
 );
 
 -- Table for the companies

@@ -23,18 +23,24 @@ services:
       retries: 5
 
   python:
-    image: python:3.9-slim
+    build: .
     container_name: job_tracker_data_populator
     working_dir: /app
-    volumes:
-      - ./data_creation.py:/app/data_creation.py
-      - ./requirements.txt:/app/requirements.txt
+    environment:
+      MYSQL_HOST: db # The service name 'db' is the hostname for the MySQL container
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     depends_on:
       db:
         condition: service_healthy
-    command: >
-      bash -c "
-      pip install --no-cache-dir requirements.txt && python3 data_creation.py"
+    command:
+      - /bin/bash
+      - -c
+      - | 
+        pip install --no-cache-dir -r requirements.txt &&
+        python data_creation.py
+
 
 volumes:
   mysql_data: # Define the named volume for data persistence
