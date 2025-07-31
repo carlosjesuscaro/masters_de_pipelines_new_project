@@ -5,7 +5,7 @@ CREATE TABLE Users (
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL, -- Store hashed passwords, not plain text
-    country VARCHAR(50),
+    country VARCHAR(100),
     registration_date DATE,
     birth_date DATE,
     nationality VARCHAR(100)
@@ -29,3 +29,4 @@ CREATE TABLE JobApplications (
     FOREIGN KEY (company_id) REFERENCES Companies(company_id)
 );
 
+    

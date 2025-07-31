@@ -17,8 +17,8 @@ DB_CONFIG = {
     'database': os.getenv('MYSQL_DATABASE')
 }
 
-NUM_USERS = 200
-NUM_COMPANIES = 100
+NUM_USERS = 300
+NUM_COMPANIES = 200
 NUM_JOB_APPLICATIONS = 500
 
 # Initialize Faker for generating fake data
